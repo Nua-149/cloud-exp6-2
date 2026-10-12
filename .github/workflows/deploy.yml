@@ -32,4 +32,4 @@ uses: actions/checkout@v4
       containerAppName: cloud-exp62-app
       resourceGroup: CloudExp62-RG
       imageToBuild: cloudexp6255.azurecr.io/cloud-exp6-2:${{ github.sha }}
-```
+      
