@@ -12,12 +12,11 @@ contents: read
 jobs:
 build-and-deploy:
 runs-on: ubuntu-latest
+steps:
+- name: Checkout repository
+uses: actions/checkout@v4
 
 ```
-steps:
-  - name: Checkout repository
-    uses: actions/checkout@v4
-
   - name: Log in to Azure
     uses: azure/login@v2
     with:
@@ -26,12 +25,11 @@ steps:
   - name: Build and deploy container
     uses: azure/container-apps-deploy-action@v1
     with:
-      appSourcePath: ${{ github.workspace }}
+      appSourcePath: .
       acrName: cloudexp6255
       acrUsername: ${{ secrets.ACR_USERNAME }}
       acrPassword: ${{ secrets.ACR_PASSWORD }}
       containerAppName: cloud-exp62-app
       resourceGroup: CloudExp62-RG
       imageToBuild: cloudexp6255.azurecr.io/cloud-exp6-2:${{ github.sha }}
-      disableTelemetry: true
 ```
